@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'maven:3-alpine'
+            args '-v /root/.m2:/root/.m2'
+        }
+    }
 
     parameters {
          string(name: 'tomcat_dev', defaultValue: 'host.docker.internal', description: 'Staging Server')
